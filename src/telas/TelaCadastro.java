@@ -4,10 +4,14 @@
  */
 package telas;
 
+import dados.ConexaoDB;
+import dados.UsuarioDAO;
 import helpers.ValidarForm;
+import java.sql.Date;
 import java.text.ParseException;
 import static javax.swing.JOptionPane.*;
 import javax.swing.UIManager;
+import modelos.Usuario;
 
 /**
  *
@@ -206,7 +210,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrar_CadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar_CadActionPerformed
-        // TODO add your handling code here
         String nome = txtNome_Cad.getText();
         String email = txtEmail_Cad.getText();
         String celular = txtCelular_Cad.getText();
@@ -224,18 +227,30 @@ public class TelaCadastro extends javax.swing.JFrame {
             return;
         }
         System.out.println(nasc);
+        Date dataFormatada;
+        
         try {
-            String dataFormatada = ValidarForm.formatarData(nasc);
-        } catch (ParseException e) {
+            dataFormatada = ValidarForm.formatarData(nasc);
+        } catch (ParseException e){
             showMessageDialog(null, "Ocorreu algum erro. Tente novamente mais tarde.", "", WARNING_MESSAGE);
-            System.out.println("Não foi possível formatar o campo de data de nascimento.");
             System.out.println(e);
+            return;
         }
         
         if(!senha.equals(conf)){
             showMessageDialog(null,"As senhas devem ser iguais!","Erro",ERROR_MESSAGE);
             return;
         }
+        
+        showMessageDialog(null, "Tudo OK para insertar no banco de dados");
+        Usuario u = new Usuario();
+        u.setNome(nome);
+        u.setEmail(email);
+        u.setCelular(celular);
+        u.setNascimento(dataFormatada);
+        UsuarioDAO uDao = new UsuarioDAO();
+        
+        uDao.criarUsuario(u);
     }//GEN-LAST:event_btnCadastrar_CadActionPerformed
 
     private void btnExcluir_CadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir_CadActionPerformed

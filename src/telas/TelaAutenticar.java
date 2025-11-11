@@ -4,6 +4,7 @@
  */
 package telas;
 import static javax.swing.JOptionPane.*;
+import modelos.Usuario;
 
 /**
  *
@@ -130,7 +131,7 @@ public class TelaAutenticar extends javax.swing.JFrame {
 
     private void btnCadastrar_AutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar_AutActionPerformed
         // TODO add your handling code here:
-        Tela_Cadastro tela = new Tela_Cadastro();
+        TelaCadastro tela = new TelaCadastro();
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastrar_AutActionPerformed

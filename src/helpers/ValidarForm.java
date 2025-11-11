@@ -2,8 +2,7 @@ package helpers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.sql.Date;
 
 public class ValidarForm {
     /**
@@ -28,12 +27,10 @@ public class ValidarForm {
      * @return Date O object do Date
      * @throws ParseException Lança a ParseException se ocorrer algum erro.
      */
-    public static String formatarData(String dataStr) throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        // Compara a data atual com a data passada
+    public static Date formatarData(String dataStr) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date data = new Date(sdf.parse(dataStr).getTime());
-        System.out.println(data);
-        return "";
+        return data;
     }
     
 }
